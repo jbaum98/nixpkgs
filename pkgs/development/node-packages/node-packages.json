@@ -24,6 +24,7 @@
 , "htmlhint"
 , "istanbul"
 , "jayschema"
+, "js-beautify"
 , "jshint"
 , "json"
 , "jsontool"
