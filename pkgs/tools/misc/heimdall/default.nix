@@ -13,12 +13,15 @@ stdenv.mkDerivation rec {
     sha256 = "1ygn4snvcmi98rgldgxf5hwm7zzi1zcsihfvm6awf9s6mpcjzbqz";
   };
 
+  patches = stdenv.lib.optionals stdenv.isDarwin [ ./libpit.patch ./darwin.patch ];
+
   buildInputs = [
     zlib libusb1
   ] ++ stdenv.lib.optional enableGUI qtbase;
   nativeBuildInputs = [ cmake ];
 
   cmakeFlags = [
+    "-DLIBUSB_LIBRARY=${libusb1}"
     "-DDISABLE_FRONTEND=${if enableGUI then "OFF" else "ON"}"
   ];
 
