@@ -9169,7 +9169,16 @@ with pkgs;
 
   ffcast = callPackage ../tools/X11/ffcast { };
 
-  fflas-ffpack = callPackage ../development/libraries/fflas-ffpack {};
+  fflas-ffpack = callPackage ../development/libraries/fflas-ffpack {
+    blas = if stdenv.isDarwin then {
+      pkg = blas;
+      linkName = "blas";
+    } else {
+      pkg = openblas;
+      linkName = "openblas";
+    };
+  };
+
   fflas-ffpack_1 = callPackage ../development/libraries/fflas-ffpack/1.nix {};
   linbox = callPackage ../development/libraries/linbox {};
 
