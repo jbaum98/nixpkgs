@@ -4,6 +4,7 @@
 , six
 , pytest
 , hypothesis
+, pytestrunner
 }:
 
 buildPythonPackage rec {
@@ -15,11 +16,13 @@ buildPythonPackage rec {
     sha256 = "5a31f6b093da3401fefdeb53a0980e3145bb9d2bf852b579cc7b39c7f0016c87";
   };
 
-  propagatedBuildInputs = [ six ];
-  buildInputs = [ pytest hypothesis ];
+  nativeBuildInputs = [ pytestrunner ];
 
+  propagatedBuildInputs = [ six ];
+
+  checkInputs = [ pytest hypothesis ];
   checkPhase = ''
-    py.test
+    pytest
   '';
 
   meta = with stdenv.lib; {
