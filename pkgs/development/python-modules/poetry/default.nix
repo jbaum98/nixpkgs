@@ -38,7 +38,10 @@ in buildPythonPackage rec {
     sha256 = "00npb0jlimnk4r01zkhfmns4843j1hfhd388s326da5pd8n0dq7l";
   };
 
-  patches = [ ./jsonschema-version.patch ];
+  postPatch = ''
+    subtituteInPlace pyproject.toml --replace "3.0a3" "3.0.0a3"
+    subtituteInPlace setup.py --replace "3.0a3" "3.0.0a3"
+  '';
 
   propagatedBuildInputs = [
     cleo6
