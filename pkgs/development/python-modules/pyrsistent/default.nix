@@ -16,14 +16,12 @@ buildPythonPackage rec {
     sha256 = "5a31f6b093da3401fefdeb53a0980e3145bb9d2bf852b579cc7b39c7f0016c87";
   };
 
-  nativeBuildInputs = [ pytestrunner ];
-
   propagatedBuildInputs = [ six ];
 
-  checkInputs = [ pytest hypothesis ];
-  checkPhase = ''
-    pytest
-  '';
+  checkInputs = [ pytestrunner pytest hypothesis ];
+
+  # pytestrunner is only needed to run tests
+  patches = [ ./no-setup-requires-pytestrunner.patch ];
 
   meta = with stdenv.lib; {
     homepage = https://github.com/tobgu/pyrsistent/;
