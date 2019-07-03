@@ -12,8 +12,9 @@ buildPythonPackage rec {
   propagatedBuildInputs = lib.optional (!isPy3k) mock;
   nativeBuildInputs = [ setuptools_scm pytest ];
 
+  # See https://github.com/pytest-dev/pytest-mock/issues/102
   checkPhase = ''
-    py.test
+    pytest --assert=plain
   '';
 
   meta = with lib; {
