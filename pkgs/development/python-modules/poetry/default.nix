@@ -30,6 +30,8 @@ let
 
   jsonschema3 = callPackage ./jsonschema.nix { };
 
+  glob2 = callPackage ./glob2.nix { };
+
 in buildPythonPackage rec {
   pname = "poetry";
   version = "0.12.16";
@@ -59,7 +61,7 @@ in buildPythonPackage rec {
     shellingham
     tomlkit
   ] ++ lib.optionals (isPy27 || isPy34) [ typing pathlib2 ]
-    ++ lib.optionals isPy27 [ virtualenv functools32 ];
+    ++ lib.optionals isPy27 [ virtualenv functools32 glob2 ];
 
   postInstall = ''
     mkdir -p "$out/share/bash-completion/completions"
