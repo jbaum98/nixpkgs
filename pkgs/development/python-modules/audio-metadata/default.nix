@@ -9,17 +9,16 @@
 
 buildPythonPackage rec {
   pname = "audio-metadata";
-  version = "0.9.0";
+  version = "0.10.0";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "1v7ww3csyxrhnpvpynla64hfn1wp37vbw7srh9343n4wc02mh65l";
+    sha256 = "1hhm1kv1p2x8vxx5rmbsfra42fr2z38yz0giw7rkrfziy70xzpy8";
   };
 
   postPatch = ''
     substituteInPlace setup.py \
-      --replace "bidict>=0.17,<0.18" "bidict" \
-      --replace "more-itertools>=4.0,<8.0" "more-itertools"
+      --replace 'pendulum>=2.0,<=3.0,!=2.0.5,!=2.1.0' 'pendulum'
   '';
 
   propagatedBuildInputs = [
