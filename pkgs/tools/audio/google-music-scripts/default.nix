@@ -4,16 +4,17 @@ with python3.pkgs;
 
 buildPythonApplication rec {
   pname = "google-music-scripts";
-  version = "4.3.0";
+  version = "4.5.0";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "0dykjhqklbpqr1lvls0bgf6xkwvslj37lx4q8522hjbs150pwjmq";
+    sha256 = "0apwgj86whrc077dfymvyb4qwj19bawyrx49g4kg364895v0rbbq";
   };
 
   postPatch = ''
     substituteInPlace setup.py \
-      --replace "audio-metadata>=0.8,<0.9" "audio-metadata"
+      --replace 'loguru>=0.4.0,<0.5.0' 'loguru' \
+      --replace 'pendulum>=2.0,<=3.0,!=2.0.5,!=2.1.0' 'pendulum'
   '';
 
   propagatedBuildInputs = [
