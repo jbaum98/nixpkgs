@@ -90,8 +90,7 @@ echoMarked() {
     filesCopied[$dst]=1
 }
 
-# Copy its kernel, initrd and dtbs to $target/nixos, and echo out an
-# extlinux menu entry
+# Copy its kernel, initrd and dtbs to $target/old
 addEntry() {
     local path
     path=$(readlink -f "$1")
@@ -135,7 +134,7 @@ addEntry() {
 addEntry "$default" default
 
 if [ "$numGenerations" -gt 0 ]; then
-    # Add up to $numGenerations generations of the system profile to the menu,
+    # Add up to $numGenerations generations of the system profile to $target/old,
     # in reverse (most recent to least recent) order.
     for generation in $(
             (cd /nix/var/nix/profiles && ls -d system-*-link) \
