@@ -1,4 +1,4 @@
-#! @bash@/bin/bash -e
+#! @bash@/bin/bash
 
 # This can end up being called disregarding the shebang.
 set -e
