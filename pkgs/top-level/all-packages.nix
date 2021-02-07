@@ -976,7 +976,6 @@ in
 
   asymptote = callPackage ../tools/graphics/asymptote {
     texLive = texlive.combine { inherit (texlive) scheme-small epsf cm-super texinfo; };
-    gsl = gsl_1;
   };
 
   async = callPackage ../development/tools/async {};
